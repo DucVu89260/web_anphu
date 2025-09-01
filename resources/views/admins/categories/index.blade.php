@@ -45,7 +45,16 @@
         </thead>
         <tbody>
             @forelse ($categories as $parent)
-                <tr class="table-primary font-weight-bold">
+                @php
+                    $rowClass = '';
+                    if ($parent->type->value === 'article') {
+                        $rowClass = 'table-success'; // Article = xanh lá
+                    } elseif ($parent->type->value === 'portfolio') {
+                        $rowClass = 'table-warning'; // Portfolio = vàng
+                    }
+                @endphp
+
+                <tr class="{{ $rowClass }} font-weight-bold">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $parent->name }}</td>
                     <td>{{ $parent->slug }}</td>
