@@ -14,6 +14,8 @@ use App\Http\Controllers\ConsultingRequestController;
 use App\Http\Controllers\CompanySettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MediaProxyController;
+
+use App\Http\Controllers\FacebookPostController;
 use App\Http\Middleware\CheckSuperAdminMiddleware;
 
 
@@ -138,6 +140,12 @@ Route::prefix('admin')->name('admin.')
       Route::delete('custom_pages/{custom_page}', [CustomPageController::class, 'destroy'])->name('custom_pages.destroy');
       Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
+   });
+
+   
+   Route::prefix('facebook')->group(function () {
+      Route::get('/', [FacebookPostController::class, 'index'])->name('facebook.index');
+      Route::get('/{id}/edit', [FacebookPostController::class, 'edit'])->name('facebook.edit');
    });
 
 });

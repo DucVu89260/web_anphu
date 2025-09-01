@@ -16,6 +16,7 @@
 
                 <div class="form-group">
                     <h5 for="name">Tên dự án</h5>
+                    <p class="text-muted text-style: italic">(Tên dự án không chứa icon)</p>
                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $portfolio->name) }}" required>
                 </div>
 

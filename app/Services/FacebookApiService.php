@@ -174,4 +174,52 @@ class FacebookApiService
             'total_count' => count($data['data'] ?? [])
         ];
     }
+    
+    public function getPostById(string $id, array $fields = []): array
+    {
+        if (empty($fields)) {
+
+            $fields = [
+                'id',
+                'message',
+                'created_time',
+                'permalink_url',
+                'full_picture',
+                'attachments{media_type,media,url,subattachments{media_type,media,url}}'
+            ];
+        }
+        
+
+        $fieldsString = implode(',', $fields);
+
+        // ép version v19 cho chắc chắn
+        $response = $this->client->get("v19.0/{$id}", [
+            'fields' => $fieldsString,
+            'access_token' => $this->adminToken
+        ]);
+
+        // dd($response);
+
+        if (!$response->successful()) {
+            $error = $response->json('error');
+            throw new RuntimeException(
+                "Facebook API Error: " . ($error['message'] ?? 'Unknown error'),
+                $response->status()
+            );
+        }
+
+        return $response->json();
+
+        if (!empty($post['attachments']['data'][0]) 
+            && $post['attachments']['data'][0]['media_type'] === 'video') {
+
+            $videoId = $post['attachments']['data'][0]['target']['id'] ?? null;
+
+            if ($videoId) {
+                $post['video_iframe'] = "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/facebook/videos/{$videoId}/";
+            }
+        }
+
+        return $post;
+    }
 }

@@ -43,6 +43,8 @@ return [
         'user_token' => env('FACEBOOK_USER_TOKEN'),
         'page_id' => env('FACEBOOK_PAGE_ID'),
         'admin_token' => env('FACEBOOK_ADMIN_TOKEN'),
+
+        'version'     => env('FACEBOOK_API_VERSION', 'v19.0'),
     ],
 
 ];

@@ -103,6 +103,14 @@
                         >
                             <i class="fa fa-cog mr-1 icon-highlight"></i> Cài đặt danh mục
                         </a>
+
+                        <a
+                            class="dropdown-item small {{ request()->routeIs('admin.facebook.index') ? 'active' : '' }}"
+
+                            href="{{ route('admin.facebook.index') }}"
+                        >
+                            <i class="fa-brands fa-facebook-f mr-1 icon-highlight"></i> FacebookApp
+                        </a>
                     </div>
                 </li>
 

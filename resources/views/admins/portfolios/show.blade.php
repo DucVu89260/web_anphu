@@ -84,10 +84,12 @@
                                     </div>
                                 </div>
                             @elseif(Str::contains($media->type, 'youtube'))
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item"
-                                            src="{{ $media->file_path }}"
-                                            allowfullscreen></iframe>
+                                <div class="youtube-video-wrapper mb-4">
+                                    <iframe src="{{ $media->file_path }}"
+                                            frameborder="0"
+                                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                            allowfullscreen>
+                                    </iframe>
                                 </div>
                             @endif
 

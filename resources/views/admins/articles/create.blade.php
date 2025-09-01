@@ -26,6 +26,7 @@
             
             <div class="form-group">
                <h5 for="name">Tên bài đăng</h5>
+               <p class="text-muted text-style: italic">(Tên bài đăng không chứa icon)</p>
                <input
                   type="text"
                   name="name"

@@ -73,8 +73,8 @@ class ArticleController extends Controller
         return view('admins.articles.create', compact('categories'));
     }
 
-    // public function store(StoreArticleRequest $request, CloudinaryService $cloudinaryService, FacebookPostSyncService $fbService)
-    public function store(StoreArticleRequest $request, CloudinaryService $cloudinaryService)
+    public function store(StoreArticleRequest $request, CloudinaryService $cloudinaryService, FacebookPostSyncService $fbService)
+    // public function store(StoreArticleRequest $request, CloudinaryService $cloudinaryService)
     {
         $validated = $request->validated();
         $validated['slug'] = Str::slug($validated['name']);
@@ -98,17 +98,17 @@ class ArticleController extends Controller
             $article->categories()->sync($validated['category_ids']);
         }
 
-        // if ($request->filled('facebook_post')) {
-        //     $postData = $request->input('facebook_post');
-        //     $postData['related_type'] = Article::class;
-        //     $postData['related_id']   = $article->id;
+        if ($request->filled('facebook_post')) {
+            $postData = $request->input('facebook_post');
+            $postData['related_type'] = Article::class;
+            $postData['related_id']   = $article->id;
 
-        //     $fbPost = $fbService->sync($postData);
+            $fbPost = $fbService->sync($postData);
 
-        //     $article->update([
-        //         'fb_post_id' => $fbPost->fb_post_id,
-        //     ]);
-        // }
+            $article->update([
+                'fb_post_id' => $fbPost->fb_post_id,
+            ]);
+        }
 
         return redirect()->route('admin.articles.index');
     }
@@ -168,9 +168,9 @@ class ArticleController extends Controller
             Cloudinary::destroy($article->thumbnail_public_id);
         }
 
-        // if ($article->facebookPost) {
-        //     $article->facebookPost->delete();
-        // }
+        if ($article->facebookPost) {
+            $article->facebookPost->delete();
+        }
             
         $article->delete();
 
