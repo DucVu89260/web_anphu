@@ -50,14 +50,12 @@
     </style>
 @endpush
 
-<div id="{{ $elementId }}" class="quill-editor">{!! $content !!}</div>
+<div id="{{ $elementId }}" class="quill-editor"></div>
 <textarea
     name="{{ $textareaName }}"
     id="{{ $elementId }}-textarea"
     class="d-none"
->
-    {{ old($textareaName) }}
-</textarea>
+>{{ old($textareaName, $content) }}</textarea>
 
 
 
@@ -82,6 +80,18 @@
                 readonly: @json($readonly),
                 toolbar: @json($toolbar)
             });
+
+            const textarea = document.getElementById('{{ $elementId }}-textarea');
+            if (textarea && textarea.value.trim()) {
+                const delta = quillManager.quill.clipboard.convert(textarea.value);
+                quillManager.quill.setContents(delta, 'silent');
+
+                // <-- add this to force normalize immediately after setting content
+                if (typeof quillManager.normalizeExistingContent === 'function') {
+                    // small delay to ensure DOM updated by Quill
+                    setTimeout(() => quillManager.normalizeExistingContent(), 50);
+                }
+            }
 
             window.quillManagers = window.quillManagers || {};
             window.quillManagers['{{ $elementId }}'] = quillManager;
