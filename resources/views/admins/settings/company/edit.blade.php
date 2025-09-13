@@ -48,41 +48,6 @@
             >
         </div>
 
-        <div class="form-group">
-            <label for="established_date" class="form-label font-weight-bold">
-                Ngày thành lập <span class="text-muted">(dd/mm/yyyy)</span>
-            </label>
-
-            <input 
-                type="date" 
-                name="established_date"
-                class="form-control @error('established_date') is-invalid @enderror"
-                id="established_date"
-                value="{{ old('established_date', $setting->established_date ? $setting->established_date->format('Y-m-d') : '') }}"
-                max="{{ now()->toDateString() }}"
-            >
-
-            @error('established_date')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div>
-            <label for="tax_code" class="form-label font-weight-bold">
-                Mã số thuế
-            </label>
-            <input 
-                type="text" 
-                class="form-control @error('tax_code') is-invalid @enderror" 
-                id="tax_code" 
-                name="tax_code" 
-                placeholder="Nhập mã số thuế (10 hoặc 13 số)"
-                value="{{ old('tax_code', $setting->tax_code ?? '') }}"
-            >
-            @error('tax_code')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror    
-        </div>
 
         <div class="form-group">
             <label for="director" class="form-label font-weight-bold">
@@ -127,9 +92,9 @@
             <label class="font-weight-bold">Email</label>
             <input
                 type="email"
-                name="company_email"
+                name="email"
                 class="form-control"
-                value="{{ old('company_email', $setting->company_email) }}"
+                value="{{ old('email', $setting->email) }}"
             >
         </div>
 
@@ -176,22 +141,24 @@
         </div>
 
         <div class="form-group">
-            <label class="font-weight-bold">Google Map 1</label>
+            <label class="font-weight-bold">Google Map 1 (Embed URL)</label>
             <input
                 type="text"
-                name="google_map[map_1][embed_url]"
+                name="google_map[embed_url]"
                 class="form-control"
-                value="{{ old('google_map.map_1.embed_url', $setting->google_map['map_1']['embed_url'] ?? '') }}"
+                value="{{ old('google_map.embed_url', $setting->google_map['embed_url'] ?? '') }}"
+                placeholder="Nhập iframe embed URL từ Google Maps"
             >
         </div>
 
         <div class="form-group">
-            <label class="font-weight-bold">Google Map 2</label>
+            <label class="font-weight-bold">Google Map 2 (Embed URL)</label>
             <input
                 type="text"
-                name="google_map[map_2][embed_url]"
+                name="google_map_2[embed_url]"
                 class="form-control"
-                value="{{ old('google_map.map_2.embed_url', $setting->google_map['map_2']['embed_url'] ?? '') }}"
+                value="{{ old('google_map_2.embed_url', $setting->google_map_2['embed_url'] ?? '') }}"
+                placeholder="Nhập iframe embed URL từ Google Maps cho địa chỉ 2"
             >
         </div>
 

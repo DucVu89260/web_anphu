@@ -8,12 +8,61 @@
 ])
 
 @php
-    // Always load directly from config - no backend dependency
-    $socialMedia = config('company.social_media', []);
+    // Load from database with fallback to config
+    $companySetting = \App\Models\CompanySetting::first();
+    $socialMedia = $companySetting?->social_links ?? [];
     
-    // Ensure we have data, fallback to empty array if config not found
+    // Fallback to config if database is empty
     if (empty($socialMedia)) {
-        $socialMedia = [];
+        $socialMedia = config('company.social_media', []);
+    }
+    
+    // Định nghĩa danh sách đầy đủ các social media có thể có
+    $availableSocialMedia = [
+        'facebook' => [
+            'icon' => 'fab fa-facebook-f',
+            'color' => '#1877f2',
+            'name' => 'Facebook'
+        ],
+        'tiktok' => [
+            'icon' => 'fab fa-tiktok', 
+            'color' => '#000000',
+            'name' => 'TikTok',
+            'logo' => 'assets/img/logo/logo_tiktok.png'
+        ],
+        'youtube' => [
+            'icon' => 'fab fa-youtube',
+            'color' => '#ff0000', 
+            'name' => 'YouTube'
+        ],
+        'zalo' => [
+            'icon' => null,
+            'color' => '#0068ff',
+            'name' => 'Zalo',
+            'logo' => 'assets/img/logo/logo_zalo.png'
+        ],
+        'instagram' => [
+            'icon' => 'fab fa-instagram',
+            'color' => '#E4405F',
+            'name' => 'Instagram'
+        ],
+        'linkedin' => [
+            'icon' => 'fab fa-linkedin-in',
+            'color' => '#0077b5',
+            'name' => 'LinkedIn'
+        ],
+        'twitter' => [
+            'icon' => 'fab fa-twitter',
+            'color' => '#1da1f2', 
+            'name' => 'Twitter'
+        ]
+    ];
+    
+    // Merge database data with default settings
+    foreach ($socialMedia as $platform => $data) {
+        if (isset($availableSocialMedia[$platform])) {
+            $socialMedia[$platform] = array_merge($availableSocialMedia[$platform], $data);
+        }
     }
     
     // Filter platforms if specified

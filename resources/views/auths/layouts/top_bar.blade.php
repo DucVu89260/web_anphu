@@ -7,8 +7,8 @@
                 <a href="{{ route('customers.index')}}" class="logo-link d-inline-block">
                     <img
                         class="anphu-logo"
-                        src="{{ asset(config('company.assets.logo.main')) }}"
-                        alt="{{ config('company.name.brand') }} Logo"
+                        src="{{ asset(company()->logo_main) }}"
+                        alt="{{ company()->company_brand }} Logo"
                     >
                 </a>
             </div>

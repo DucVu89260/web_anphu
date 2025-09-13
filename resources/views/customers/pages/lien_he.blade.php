@@ -219,7 +219,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="embed-responsive embed-responsive-4by3 border rounded">
                         <iframe
-                            src="{{ config('company.map_1.embed_url') }}"
+                            src="{{ company()->google_map['embed_url'] ?? '' }}"
                             style="border:0;"
                             allowfullscreen=""
                             loading="lazy"
@@ -230,7 +230,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="embed-responsive embed-responsive-4by3 border rounded">
                         <iframe
-                            src="{{ config('company.map_2.embed_url') }}"
+                            src="{{ company()->google_map_2['embed_url'] ?? '' }}"
                             style="border:0;"
                             allowfullscreen=""
                             loading="lazy"

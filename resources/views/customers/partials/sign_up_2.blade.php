@@ -157,13 +157,13 @@
          </p>
          <p class="small mb-0">
             <strong>Hotline:</strong>
-            <a href="tel:{{ $companySettings->company_phone_2 }}">
-               <span class="font-weight-bold">{{ $companySettings->company_phone_2 }}</span>
+            <a href="tel:{{ company()->company_phone_2 }}">
+               <span class="font-weight-bold">{{ company()->company_phone_2 }}</span>
             </a>
             <br>
             <strong>Email:</strong>
-            <a href="mailto:{{ $companySettings->company_email }}">
-               <span class="font-weight-bold">{{ $companySettings->company_email }}</span>
+            <a href="mailto:{{ company()->email }}">
+               <span class="font-weight-bold">{{ company()->email }}</span>
             </a>
          </p>
       </form>

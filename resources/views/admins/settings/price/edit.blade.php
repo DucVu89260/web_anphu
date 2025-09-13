@@ -18,8 +18,8 @@
         </div>
 
         <div class="form-group">
-            <label for="company_email">Email</label>
-            <input type="email" name="company_email" class="form-control" value="{{ old('company_email', $setting->company_email) }}">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" value="{{ old('email', $setting->email) }}">
         </div>
 
         <div class="form-group">

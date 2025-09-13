@@ -7,8 +7,8 @@
       <div class="col-12 d-flex justify-content-center">
         <a href="{{ route('admin.portfolios.index') }}" class="logo-link d-inline-block">
           <img class="anphu-logo" 
-            src="{{ asset(config('company.assets.logo.main')) }}" 
-            alt="{{ config('company.name.brand') }} Logo"
+            src="{{ asset(company()->logo_main) }}" 
+            alt="{{ company()->company_brand }} Logo"
             height="40"
           >
         </a>

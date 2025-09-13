@@ -3,38 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CompanySetting extends Model
 {   
-    use HasFactory;
-
-    protected $fillable = [
-        'company_name',
-        'company_brand',
-        'international_name',
-        'director',
-        'company_logo',
-        'company_logo_public_id',
-        'company_email',
-        'company_phone_1',
-        'company_phone_2',
-        'company_address_1',
-        'company_address_2',
-        'social_links',
-        'working_hours',
-        'policy_content',
-        'google_map',
-        'established_date',
-        'tax_code',
-        'certificates',
-        'certificates_public_ids',
-    ];
+    protected $guarded = [];
 
     protected $casts = [
-        'established_date' => 'date',
         'social_links' => 'array',
         'google_map' => 'array',
+        'google_map_2' => 'array',
         'certificates' => 'array',
         'certificates_public_ids' => 'array',
     ];

@@ -135,13 +135,13 @@
         <div class="row">
             {{-- Sơ lược --}}
             <div class="col-md-12 about-content" data-aos="fade-right">
-                <h4 class="heading-about">Sơ lược về {{ config('company.name.brand') }}</h4>
+                <h4 class="heading-about">Sơ lược về {{ company()->company_brand }}</h4>
                 <hr class="border-warning">
-                <p><span class="font-weight-bold">Tên công ty: </span>{{ $companySettings->company_name ?? 'Chưa cập nhật' }}</p>
-                <p><span class="font-weight-bold">Tên quốc tế: </span>{{ $companySettings->international_name ?? 'Chưa cập nhật' }}</p>
-                <p><span class="font-weight-bold">Ngày thành lập: </span>{{ optional($companySettings->established_date)->format('d/m/Y') ?? 'Chưa cập nhật' }}</p>
-                <p><span class="font-weight-bold">Mã số thuế: </span>{{ $companySettings->tax_code ?? 'Chưa cập nhật' }}</p>
-                <p><span class="font-weight-bold">Người đại diện: </span>{{ $companySettings->director ?? 'Chưa cập nhật' }}</p>
+                <p><span class="font-weight-bold">Tên công ty: </span>{{ company()->company_name ?? 'Chưa cập nhật' }}</p>
+                <p><span class="font-weight-bold">Tên quốc tế: </span>{{ company()->international_name ?? 'Chưa cập nhật' }}</p>
+                <p><span class="font-weight-bold">Ngày thành lập: </span>{{ optional(company()->established_date)->format('d/m/Y') ?? 'Chưa cập nhật' }}</p>
+                <p><span class="font-weight-bold">Mã số thuế: </span>{{ company()->tax_code ?? 'Chưa cập nhật' }}</p>
+                <p><span class="font-weight-bold">Người đại diện: </span>{{ company()->director ?? 'Chưa cập nhật' }}</p>
             </div>
 
             {{-- Lịch sử hình thành --}}
@@ -155,9 +155,9 @@
             <div class="col-md-12 about-content" data-aos="fade-right">
                 <h4 class="heading-about">Chứng chỉ hoạt động</h4>
                 <hr class="border-warning">
-                @if(!empty($companySettings->certificates))
+                @if(!empty(company()->certificates))
                     <div class="row justify-content-center">
-                        @foreach($companySettings->certificates as $img)
+                        @foreach(company()->certificates as $img)
                             <div class="col-md-4 text-center">
                                 <div class="certificate-box mb-3">
                                     <img src="{{ $img }}" alt="certificate" class="img-fluid rounded shadow-sm">

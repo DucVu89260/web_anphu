@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateCompanySettingRequest;
 use Illuminate\Http\Request;
 use App\Models\CompanySetting;
 use App\Services\CloudinaryService;
@@ -19,26 +18,11 @@ class CompanySettingController extends Controller
         ]);
     }
 
-    public function update(UpdateCompanySettingRequest $request, CloudinaryService $cloudinaryService)
+    public function update(Request $request, CloudinaryService $cloudinaryService)
     {
         $companySetting = CompanySetting::firstOrFail();
 
-        // Lấy những field thực sự có trong bảng
-        $data = $request->only([
-            'company_name',
-            'company_brand',
-            'international_name',
-            'director',
-            'company_email',
-            'company_phone_1',
-            'company_phone_2',
-            'company_address_1',
-            'company_address_2',
-            'working_hours',
-            'policy_content',
-            'established_date',
-            'tax_code',
-        ]);
+        $data = $request->all();
 
         // Social links JSON
         $data['social_links'] = [

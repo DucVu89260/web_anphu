@@ -303,7 +303,7 @@
 
             <!-- footer -->
             <div class="auth-footer">
-                ©2025 {{ config('company.name.brand') }}
+                ©2025 {{ company()->company_brand }}
             </div>
         </div>
     </div>
